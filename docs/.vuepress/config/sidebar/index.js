@@ -28,8 +28,6 @@ module.exports = {
                 'front-end/EChartsStudy',
                 'front-end/js-json',
                 'front-end/viaStart',
-                'front-end/vue-demo',
-                'front-end/reco-info',
                 'front-end/vuepress-plugin-boxx',
                 'front-end/TCP&UDP'
             ]

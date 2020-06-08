@@ -29,14 +29,14 @@ module.exports = [
           {
             name: '一定要爱你',
             artist: '田一龙',
-            url: '../public/music/yiding.mp3',
-            cover: '../public/music/yiding.jpg'
+            url: '../../music/yiding.mp3',
+            cover: '../../music/yiding.jpg'
           },
           {
             name: '爱很美',
             artist: '刘佳',
-            url: '../public/music/aihenmei.mp3',
-            cover: '../public/music/aihenmei.jpg'
+            url: '../../music/aihenmei.mp3',
+            cover: '../../music/aihenmei.jpg'
           },
           {
             name: 'Sold Out',
