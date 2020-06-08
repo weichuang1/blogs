@@ -27,23 +27,5 @@ isShowTitleInHome: true
     margin-top: -35%
   }
 }
-@media screen and (max-width: 480px){
-  .banner{
-    top:-142rem;
-  }
-  .h-information {
-    top:-35rem;
-  }
-  .home-blog .hero h1 {
-    font-size:3rem;
-    margin: 7rem auto 1.8rem;
-  }
-  #app .theme-container .navbar .home-link .site-name {
- width: 150px;
- overflow: hidden;
- white-space: nowrap;
- text-overflow: ellipsis;
-  }
- 
-}
+
 </style>

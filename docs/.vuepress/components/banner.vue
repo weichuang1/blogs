@@ -20,7 +20,7 @@ export default {};
 .banner{
     width: 100%;
     position: relative;
-    top: -115rem;
+    top: -146rem;
     align-items: center;
     display: flex;
     justify-content: center;

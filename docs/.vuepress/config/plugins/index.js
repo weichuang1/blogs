@@ -29,20 +29,20 @@ module.exports = [
           {
             name: '一定要爱你',
             artist: '田一龙',
-            url: '../music/yiding.mp3',
-            cover: '../music/yiding.jpg'
+            url: '../public/music/yiding.mp3',
+            cover: '../public/music/yiding.jpg'
           },
           {
             name: '爱很美',
             artist: '刘佳',
-            url: '../music/aihenmei.mp3',
-            cover: '../music/aihenmei.jpg'
+            url: '../public/music/aihenmei.mp3',
+            cover: '../public/music/aihenmei.jpg'
           },
           {
             name: 'Sold Out',
             artist: 'Hawk Nelson',
-            url: '../music/soldout.mp3',
-            cover: '../music/sold.jpg'
+            url: './music/soldout.mp3',
+            cover: './music/sold.jpg'
           },
           {
             name: '就当是你为了我',
