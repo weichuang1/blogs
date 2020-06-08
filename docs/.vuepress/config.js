@@ -4,7 +4,6 @@ const plugins = require('./config/plugins/')
 
 
 module.exports = {
-  base: '/blogs/',
   title: "stay true to the mission",
   description: '保持热爱，奔赴山海',
   head: [
