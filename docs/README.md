@@ -38,5 +38,12 @@ isShowTitleInHome: true
     font-size:3rem;
     margin: 7rem auto 1.8rem;
   }
+  #app .theme-container .navbar .home-link .site-name {
+ width: 190px;
+ overflow: hidden;
+ white-space: nowrap;
+ text-overflow: ellipsis;
+  }
+ 
 }
 </style>
