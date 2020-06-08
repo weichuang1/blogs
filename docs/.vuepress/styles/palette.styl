@@ -1,0 +1,47 @@
+$accentColor = #409eff
+$textColor = #232521
+$textShadow = 0
+/* 
+$boxShadowHover = 0 2px 16px 0 rgba(0, 0, 0, 0.2)
+$textShadow = 0 2px 4px rgba(0, 0, 0, 0.2);
+$borderRadius = .25rem 
+*/
+
+
+// 首页图片上文字颜色
+.home-blog .hero h1{
+     -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+    text-shadow: 1px 1px 0 #ff3f1a, -1px -1px 0 #00a7e0;
+    font-size:5rem;
+    font-weight: 800;
+    margin:2rem auto;
+}
+.home-blog .hero p{
+  font-weight: 800;
+  text-shadow: 0 2px 2px #47456d;
+}
+
+
+#app .theme-container .navbar .home-link .site-name {
+      font-weight: 800;
+    font-size: 22px;
+  background: -webkit-linear-gradient(
+    45deg,
+    rgb(112, 247, 254),
+    rgb(251, 215, 198),
+    rgb(253, 239, 172),
+    rgb(191, 181, 221),
+    rgb(190, 213, 245)
+  );
+  background-clip: text;
+  color: transparent;
+  animation: 3s linear 0s infinite normal none running run;
+}
+@keyframes run {
+  0% {
+    background-position: -100px 0;
+  }
+  100% {
+    background-position: 100px 0;
+  }
+}
