@@ -39,7 +39,7 @@ isShowTitleInHome: true
     margin: 7rem auto 1.8rem;
   }
   #app .theme-container .navbar .home-link .site-name {
- width: 190px;
+ width: 150px;
  overflow: hidden;
  white-space: nowrap;
  text-overflow: ellipsis;
