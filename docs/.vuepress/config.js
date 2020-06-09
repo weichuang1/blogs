@@ -57,6 +57,16 @@ module.exports = {
      // 作者
      author: 'weicker',
      authorAvatar: '/timg.gif',
+      //评论
+    valineConfig: {
+      appId: 'JUwQdTF5snyGg9Ewqd3vcA3h-gzGzoHsz',
+      appKey: 'YfbxsYfirElxPLpCrfuXnfFN',
+      placeholder: '填写邮箱可以收到回复哦!',
+      notify: true, // 邮件提醒
+      verify: true, // 验证码
+      recordIP: true
+
+    },
   },
   plugins,
   markdown: {
