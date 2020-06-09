@@ -1,17 +1,16 @@
 ---
 title: Git常用命令清单
-date: 2018-03-12
+date: 2020-03-12
 sidebar: true
 sidebarDepth: 5
 tags:
 - "开发规范"
 - git
 categories:
-- "后端"
+- "网络"
 isShowComments: false
 ---
 
-![](/znote/img/other/git_001.png)
 
 <!-- more -->
 

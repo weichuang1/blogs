@@ -1,7 +1,7 @@
 <template>
   <div>
       <img src="../public/shu.jpg" alt />
-      <p>欢迎来到Mychuang！</p>
+      <p>欢迎来到stay true to the mission！</p>
       <p>我是2019毕业，90后程序员，前端小菜鸟.</p>
       <p>今年对我而言，是人生的一个重要节点。今年是我觉得过得最快的一年，也是成长最多的一年。</p>
       <p>

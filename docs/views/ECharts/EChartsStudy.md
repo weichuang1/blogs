@@ -12,13 +12,6 @@ isShowComments: false
 
 [[toc]]
 
-## 介绍
-
-1. 把常用的ECharts图表整理一下，方便日后的使用
-
-2. 图表实例可见：[http://zpj80231.gitee.io/echartsstudy/](http://zpj80231.gitee.io/echartsstudy/)
-
-
 ## 常用网址
 
 - 在ECharts官网运行编辑实例：
@@ -28,23 +21,6 @@ isShowComments: false
 
   - [https://echarts.baidu.com/option.html#grid](https://echarts.baidu.com/option.html#grid)
 
-## 图表展示如下
-
-- 柱+折线图
-
-![](/znote/img/EChartsStudy/柱+折线图.png)
-
-- 饼图
-
-![](/znote/img/EChartsStudy/饼图.png)
-
-- 迁徙图
-
-![](/znote/img/EChartsStudy/迁徙图.png)
-
-- 接入百度地图
-
-![](/znote/img/EChartsStudy/接入百度地图.png)
 
 ## 使用服务端返回数据的异步加载和更新
 

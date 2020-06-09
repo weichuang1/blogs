@@ -5,7 +5,7 @@ tags:
  - Canvas
  - Html5
 categories:
- - 笔记
+ - 前端
 ---
 
 ## 绘图工具

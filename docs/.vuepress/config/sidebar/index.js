@@ -3,38 +3,36 @@ module.exports = {
     '/views/': [
         '',
         {
-            title: '知识晶体 Q&A',
+            title: '面试题',
             collapsable: true,
             children: [
-                'qaq/sum_db_001',
-                'qaq/sum_fe_001',
-                'qaq/sum_fe_002'
+                'interview/sum_db_001',
+                'interview/sum_fe_001',
+                'interview/sum_fe_002'
             ]
         },
         {
-            title: '规范 Standard',
+            title: '网络',
             collapsable: true,
             children: [
-                'specification/git',
-                'specification/linux01',
+                'network/TCP&UDP',
+                'network/git',
+                'network/linux'
             ]
         },
         {
-            title: '前端 Front-end',
-            collapsable: true,
-            children: [
-                'front-end/EChartsStudy',
-                'front-end/js-json',
-                'front-end/viaStart',
-                'front-end/vuepress-plugin-boxx',
-                'front-end/TCP&UDP'
-            ]
-        },
+          title: 'ECharts',
+          collapsable: true,
+          children: [
+              'ECharts/EChartsStudy',
+          ]
+      },
       
         {
-            title: '随笔 Essay',
+            title: '牢骚日记',
             collapsable: true,
             children: [
+                'essay/20200606',
                 'essay/20190928',
                 'essay/20191109',
                 'essay/20200227',
@@ -68,7 +66,8 @@ module.exports = {
               'js/js对象',
               'js/js继承',
               'js/js原型链、闭包',
-              'js/js函数的四种调用方式'
+              'js/js函数的四种调用方式',
+              'js/js-json'
             ]
           },
           {

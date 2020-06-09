@@ -3,7 +3,7 @@ title: JS对象
 tags:
  - js
 categories:
- - 笔记
+ - 前端
 date: 2019-11-12
 ---
 

@@ -3,7 +3,7 @@ title: JS函数的四种调用方式
 tags:
  - js
 categories:
- - 笔记
+ - 前端
 date: 2019-11-27
 ---
 

@@ -5,7 +5,7 @@ tags:
  - js
  - Vue
 categories:
- - 笔记
+ - 前端
 ---
 
 ## Vue模板语法

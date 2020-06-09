@@ -4,7 +4,7 @@ sidebarDepth: 2
 tags:
  - js
 categories:
- - 笔记
+ - 前端
 date: 2019-11-12
 publish: false
 ---
