@@ -1,6 +1,6 @@
 ---
 title: 函数式编程 compose
-date: 2020-6-01
+date: 2020-06-01
 tags:
  - js
 categories:

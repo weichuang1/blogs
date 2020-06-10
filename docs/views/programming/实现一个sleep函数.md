@@ -1,6 +1,6 @@
 ---
 title: 实现一个 sleep 函数
-date: 2020-6-05
+date: 2020-06-05
 tags:
  - js
 categories:

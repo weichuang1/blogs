@@ -1,6 +1,6 @@
 ---
 title: 包与npm
-date: 2020-6-07
+date: 2020-06-07
 tags:
  - node.js
 categories:

@@ -1,6 +1,6 @@
 ---
 title: this指向
-date: 2020-6-10
+date: 2020-06-10
 tags:
  - js
 categories:

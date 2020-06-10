@@ -1,6 +1,6 @@
 ---
 title: 用reduce实现map的功能
-date: 2020-6-10
+date: 2020-06-10
 tags:
  - js
 categories:

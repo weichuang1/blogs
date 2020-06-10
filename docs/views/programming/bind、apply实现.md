@@ -1,6 +1,6 @@
 ---
 title: 自封装bind方法
-date: 2020-6-06
+date: 2020-06-06
 tags:
  - js
 categories:

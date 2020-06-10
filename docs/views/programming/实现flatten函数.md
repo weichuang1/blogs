@@ -1,6 +1,6 @@
 ---
 title: 实现 flatten 函数
-date: 2020-6-06
+date: 2020-06-06
 tags:
  - js
 categories:

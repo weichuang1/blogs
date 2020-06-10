@@ -1,6 +1,6 @@
 ---
 title: name值是多少
-date: 2020-6-01
+date: 2020-06-01
 tags:
  - js
 categories:

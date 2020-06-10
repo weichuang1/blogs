@@ -1,6 +1,6 @@
 ---
 title: 使用 Promise 封装一个 AJAX
-date: 2020-6-06
+date: 2020-06-06
 tags:
  - es6
 categories:
