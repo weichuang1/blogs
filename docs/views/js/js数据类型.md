@@ -1,5 +1,5 @@
 ---
-title: JS数据类型
+title: 变量类型和类型转换
 sidebarDepth: 2
 tags:
  - js
@@ -8,213 +8,320 @@ categories:
 date: 2019-10-14
 ---
 
-::: tip 笔记概览
-1、JS数据类型  
-2、JS数据类型的判断  
-3、JS数据类型的转换  
-:::
-<!-- more -->
-## JS数据类型
+### JS 变量类型
 
-- 基本数据类型：
-  - Undefined
-    - 声明但未对其进行初始化时值即为undefined
-    - 引入是为了区分空对象指针与未经初始化的变量
-    - 对未初始化和未声明的变量执行typeof操作符都会返回undefined，这个结果有逻辑上的合理性(无论对哪种变量都不可能执行真正的操作)
-  - Null
-    - 表示一个空对象指针
-    - undefined值是派生自null的（null == undefined为true）
-    - 只要意在保存对象的变量还没有真正保存对象，就应该明确地让该变量保存为null
-  - Boolean
-  - Number
-    - 在进行算术计算时，所有以八进制和十六进制表示的数值最终都将被转换为十进制数值、
-    - 由于浮点数值需要的内存空间是保存整数值的两倍，因此ECMAScript会不失时机地将浮点数值转换为整数值
-    - 浮点数值的最高精度是17位小数，但在进行算术计算时其精确度远远不如整数。(0.1 + 0.2 = 0.30000000000000004)
-    - NaN的特点是
-      - 任何涉及NaN的操作都会返回NaN
-      - NaN与任何值都不相等包括它本身
-  - String 
-- 引用数据类型：Function、Object（Array、Date、Function、Error、RegExp、Math、Number、String、Boolean、Globle）  
-  Object的每个实例都具有下列方法和属性
-   - constructor: 保存着用于创建当前对象的函数
-   - hasOwnProperty(propertyName): 用于检查给定的属性在当前对象实例中是否存在
-   - isPrototypeOf(object): 用于检查传入的对象是否是当前对象的原型
-   - propertyIsEnumerable(propertyName): 用于检查给定的属性是否能够使用for-in语句来枚举
-   - toLocaleString(): 返回对象的字符串表示，该字符串与执行环境对应
-   - toString(): 返回对象的字符串表示
-   - valueOf(): 返回对象的字符串、数值或布尔值表示
-- ES6新增：Symbol（Symbol类型的对象永远不相等，即便创建它们的时候传入了相同的值，因此，可借助此特性解决属性名的冲突问题，这也是该数据类型存在的主要用途，意为标记）
+JS中有 6 种原始值，分别是：
+1. boolean
+2. number
+3. string
+4. undefined
+5. symbol
+6. null
 
-## JS数据类型的判断
+引用类型：
+1. 对象
+2. 数组
+3. 函数
 
-### 1.typeof 操作符
 
-`typeof` 操作符可能返回的值
-- "undefined" 如果这个值未定义
-- "boolean" 如果这个值是布尔值
-- "string" 如果这个值是字符串
-- "number" 如果这个值是数值
-- "object" 如果这个值是对象或null
-- "function" 如果这个值是函数
-- "symbol" 如果这个值是Symbol
 
-### 2.instanceof 对象运算符
+### JS中使用typeof能得到哪些类型？
+其中一个奇怪的 null，虽然是基本变量，但是因为设计的时候`null`是全0，而对象是`000`开头，所以有这个误判。
+1. boolean
+2. number
+3. string
+4. undefined
+5. symbol
+6. **object**
+7. **function**
+8. [bigint](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
 
-- `obj1 instanceof obj2` 可以判断obj1是否为obj2的实例
-- obj2必须为对象，否则会报错
-- 可以对不同的对象实例进行判断判断方法是根据对象的原型链依次向下查询，如果obj2的原型属性存在obj1的原型链上，（obj1 instanceof obj2）值为true
-- instanceof检测不到基本数据类型但是可以检测到使用下面的方式创建的num、str、boolean
- ```javascript
-var num = new Number(123);
-var str = new String('abcdef');
-var boolean = new Boolean(true);
-// 以上三种方式等同于new Object()，Object构造函数会根据传入值的类型返回相应基本包装类型的实例 
-```
 
-### 3.constructor 查看对象对应的构造函数
 
-使用constructor是不保险的，因为constructor属性是可以被修改的，会导致检测出的结果不正确
+### instanceof 能正确判断对象的原理是什么？
+判断一个对象与构造函数是否在一个原型链上
 ```javascript
-var str = 'hello';
-alert(str.constructor == String);//true
+const Person = function() {}
+const p1 = new Person()
+p1 instanceof Person // true
 
-var bool = true;
-alert(bool.constructor == Boolean);//true
+var str = 'hello world'
+str instanceof String // false
 
-var num = 123;
-alert(num.constructor ==Number);//true
-
-var nul = null;
-alert(nul.constructor == Object);//报错
-
-var und = undefined;
-alert(und.constructor == Object);//报错
-
-var oDate = new Date();
-alert(oDate.constructor == Date);//true
-
-var json = {};
-alert(json.constructor == Object);//true
-
-var arr = [];
-alert(arr.constructor == Array);//true
-
-var reg = /a/;
-alert(reg.constructor == RegExp);//true
-
-var fun = function(){};
-alert(fun.constructor ==Function);//true
-
-var error = new Error();
-alert(error.constructor == Error);//true
+var str1 = new String('hello world')
+str1 instanceof String // true
 ```
-### 4.Object.prototype.toString.call()
 
-可以说不管是什么类型，它都可以立即判断出。  
-`toString`是`Object`原型对象上的一个方法，该方法默认返回其调用者的具体类型，更严格的讲，是`toString`运行时this指向的对象类型，返回的类型格式为`[object xxx]`，xxx是具体的数据类型  
-其中包括：  
-`String,Number,Boolean,Undefined,Null,Function,Date,Array,RegExp,Error,HTMLDocument,... `  
-基本上所有对象的类型都可以通过这个方法获取到。
 
-### 5. 四种判断方法的比较
 
-  | 不同类型的优缺点 | typeof                     | instanceof                         | constructor                                 | Object.prototype.toString.call   |
-  | :--------------: | -------------------------- | ---------------------------------- | ------------------------------------------- | -------------------------------- |
-  |       优点       | 使用简单                   | 能检测出引用类型                   | 基本能检测所有的类型（除了null和undefined） | 检测出所有的类型                 |
-  |       缺点       | 只能检测出基本类型(除null) | 不能检测出基本类型，且不能跨iframe | constructor易被修改，也不能跨iframe         | IE6下，undefined和null均为Object |
+### 实现一个类型判断函数
 
-### 6. 一些Tips
+1. 判断null
+2. 判断基础类型
+3. 使用`Object.prototype.toString.call(target)`来判断**引用类型**
 
-- `null == undefined`是true，其实值undefined是null派生来的，因此ecmaScript把他们定义为相等的
-- 判断一个对象`{}`是否为空对象的方法
-  - 用 `for in` 遍历属性
-    ```javascript
-    function isEmptyObject(e) {  
-      var t;  
-      for (t in e)  
-        return !1;  
-      return !0  
-    }
-    ```
-  - 通过JSON自带的`.stringify()` 
-    ```javascript
-    if(JSON.stringify(c)=='{}'){
-      console.log('空对象');
-    }
-    ```
-  - ES6新增的方法`Object.keys()` 
-    ```javascript
-    if (Object.keys(obj).length==0) {
-      console.log('空对象');
-    } else {
-      console.log('非空对象');
-    }
-    ```
+注意： 一定是使用`call`来调用，不然是判断的Object.prototype的类型
+之所以要先判断是否为基本类型是因为：虽然`Object.prototype.toString.call()`能判断出某值是：number/string/boolean，但是其实在包装的时候是把他们先转成了对象然后再判断类型的。 但是JS中包装类型和原始类型还是有差别的，因为对一个包装类型来说，typeof的值是object
 
-## JS数据类型的转换
+```javascript
+/**
+ * 类型判断
+ */
+function getType(target) {
+  //先处理最特殊的Null
+  if(target === null) {
+    return 'null';
+  }
+  //判断是不是基础类型
+  const typeOfT = typeof target
+  if(typeOfT !== 'object') {
+    return typeOfT;
+  }
+  //肯定是引用类型了
+  const template = {
+    "[object Object]": "object",
+    "[object Array]" : "array",
+    // 一些包装类型
+    "[object String]": "object - string",
+    "[object Number]": "object - number",
+    "[object Boolean]": "object - boolean"
+  };
+  const typeStr = Object.prototype.toString.call(target);
+  return template[typeStr];
+}
+```
 
-### Boolean 
-  - `Boolean()`
-    |       转换类型       |        转换为true的值        | 转换为false的值 |
-    | :------------------: | :--------------------------: | :-------------: |
-    |  String => Boolean   |          非空字符串          |    空字符串     |
-    |  Number => Boolean   | 任何非零数字值（包括无穷大） |     0和NaN      |
-    |  Object => Boolean   |           任何对象           |      null       |
-    | Undefined => Boolean |        not applicable        |    undefined    |
 
-### Number
-  - `Number()`  
-    转换规则
-    - `Boolead => Number` true和false将分别被转换为1和0
-    - `null  => Number` 返回0
-    - `undefined  => Number` 返回NaN
-    - `String => Number`
-      - 只包含数字则将其转换为十进制数值
-      - 包含有效的浮点格式则将其转换为对应的浮点数值
-      - 包含有效的十六进制格式，则将其转换为相同大小的十进制数值
-      - 空字符串转换为0
-      - 包含上述格式之外的字符转换为NaN
-    - `Object  => Number`
-      - 是对象则调用对象的valueOf() 方法，然后依照前面的规则转换返回的值，如果转换的结果是NaN，则调用对象的toString() 方法，然后再依照前面的规则转换返回的字符串值
 
-  - `parseInt()`
+### 转Boolean
+以下都为假值，其他所有值都转为 true，包括所有对象（空对象，空数组也转为真）。
 
-    `Number()`在转换字符串时比较复杂而且不够合理，在处理整数的时候更常用`parseInt()`
+ - false
+ - undfined
+ - null
+ - ''
+ - NaN
+ - 0
+ - -0
 
-    转换规则：从第一个非空格字符开始，如果第一个非空格字符不是数字字符或者负号，就会返回NaN，如果第一个非空格字符是数字字符，就会继续解析直到解析完所有字符或者遇到了一个非数字字符。
 
-    小数点不算做有效字符
 
-    第二个参数可以设置转换时使用的基数(即多少进制)
+### 对象转基本类型
+对象在转换基本类型时，会调用`valueOf`， 需要转成字符类型时调用`toString`。
+```javascript
+var a = {
+  valueOf() {
+    return 0;
+  },
+  toString() {
+    return '1';
+  }
+}
 
-  - `parseFloat()`  
-    转换规则与`parseInt()`相似，但是字符串中的第一个小数点是有效的，而第二个小数点都是无效的
-  
-    `parseInt()` 和 `parseFloat()`的区别  
-      - `parseFloat`的第一个小数点是有效的
-      - `parseFloat`始终都会忽略前导的0
-      - `parseFloat`只解析十进制值，因此他没有用第二个参数指定基数的用法，所以十六进制的字符串始终会被转换成0
-      - 如果字符串包含的是一个可解析为整数的值，`parseFloat`会返回整数
+1 + a           // 1
+'1'.concat(a)   //"11"
+```
+也可以重写 `Symbol.toPrimitive` ，该方法在转基本类型时调用**优先级最高**。  [Symbol.toPrimitive](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive) 指将被调用的指定函数值的属性转换为相对应的原始值。
 
-### String 
-  - `toString()`
-    - 数值、布尔值、对象和字符串值都有`toString()`方法但null和undefinded值没有这个方法
-    - 在调用数值的该方法时`toString()`也可以传递参数，参数为输出数值的基数
 
-  - `String()`  
-    在不知道要转换的值是不是null或undefined的情况下，还可以使用转型函数`String()`，这个函数能够将任何类型的值转换为字符串，转换规则如下：
-    - 如果值有`toString()`方法，则调用该方法并返回相应的结果
-    - 如果值为null则返回"null"
-    - 如果值是undefined，则返回"undefined"
 
-### Object
-  - `toLocalString()`：返回对象的字符串表示，该字符串与执行环境的地区对应
-  - `toString()`：返回对象的字符串表示
-  - `valueOf()`：返回对象的字符串、数值或布尔值表示
+### 类型转换
 
-### 隐式类型转换
+运算中其中一方为字符串，那么就会把另一方也转换为字符串
+如果一方不是字符串或者数字，那么会将它转换为数字或者字符串
+```javascript
+1 + '1' // '11'
+true + true // 2
+4 + [1,2,3] // "41,2,3"
+```
 
-  转换隐式类型转换指的是字符串和数值类型之间的转换
+还需要注意这个表达式` 'a' + + 'b' `
+```js
+'a' + + 'b' // -> "aNaN"
+```
+因为 + 'b' 等于 NaN，所以结果为 "aNaN"，你可能也会在一些代码中看到过 + '1' 的形式来快速获取 number 类型。
 
-  - 在进行字符串和数字之间进行减乘除取模运算或者进行比较运算时，字符串会自动转换为数字。转换数字的默认方法是调用`Number()`
-  - 进行加法运算则是将数字看成字符串进行拼接 
+[JS类型转换规则总结](https://blog.csdn.net/qq_37746973/article/details/82491282)
+
+[JS隐射类型转换](https://blog.csdn.net/qq_37746973/article/details/81010057)
+
+
+
+### `100 +` 问题
+```js
+'100' + 100   // "100100"
+
+100 + '100'   // "100100"
+
+100 + true    // 101
+
+100 + false   // 100
+
+100 + undefined //NaN
+
+100 + null    // 100
+```
+
+
+
+### "a common string"为什么会有length属性
+
+通过字面量的方式创建：var a = 'string';，这时它就是基本类型值；通过构造函数的方式创建：var a = new String('string');这时它是对象类型。
+
+基本类型是没有属性和方法的，但仍然可以使用对象才有的属性方法。这时因为在对基本类型使用属性方法的时候，后台会隐式的创建这个基本类型的对象，之后再销毁这个对象
+
+
+
+### == 操作符
+
+对于 == 来说，如果对比双方的类型不一样的话，就会进行类型转换
+
+判断流程：
+1. 首先会判断两者类型是否相同。相同的话就是比大小了
+2. 类型不相同的话，那么就会进行类型转换
+3. 会先判断是否在对比 null 和 undefined，是的话就会返回 true
+4. 判断两者类型是否为 string 和 number，是的话就会将字符串转换为 number
+```js
+1 == '1'
+      ↓
+1 ==  1
+```
+5. 判断其中一方是否为 boolean，是的话就会把 boolean 转为 number 再进行判断
+```js
+'1' == true
+        ↓
+'1' ==  1
+        ↓
+ 1  ==  1
+```
+6. 判断其中一方是否为 object 且另一方为 string、number 或者 symbol，是的话就会把 object 转为原始类型再进行判断
+```js
+'1' == { a: 'b' }
+        ↓
+'1' == '[object Object]'
+```
+7. 两边都是对象的话，那么只要不是同一对象的不同引用，都为false
+
+注意，只要出现NaN，就一定是false，因为就连NaN自己都不等于NaN
+对于NaN，判断的方法是使用全局函数 `isNaN()`
+
+
+
+### === 操作符
+不转类型，直接判断类型和值是否相同。
+但是 NaN === NaN 还是false
+
+
+
+### {} 等于true还是false
+```js
+var a = {};
+
+a == true // -> ?
+a == false // -> ?
+```
+答案是两个都为false
+因为 a.toString() -> '[object Object]' -> NaN
+
+
+
+### 1 与 Number(1)有什么区别
+```js
+var a = Number(1) // 1
+var b = new Number(1)  // Number {[[PrimitiveValue]]: 1}
+typeof (a) // number
+typeof (b) // object
+a == b // true
+```
+
+ - var a = 1 是一个常量，而 Number(1)是一个函数
+ - new Number(1)返回的是一个对象
+ - a==b 为 true 是因为所以在求值过程中，总是会强制转为原始数据类型而非对象，例如下面的代码:
+
+```js
+typeof 123 // "number"
+typeof new Number(123) // "object"
+123 instanceof Number // false
+(new Number(123)) instanceof Number // true
+123 === new Number(123) // false
+```
+
+
+### console.log(!!(new Boolean(false))输出什么 [易混淆]
+
+true
+布尔的包装对象 Boolean 的对象实例，对象只有在 null 与 undefined 时，才会认定为布尔的 false 值，布尔包装对象本身是个对象，对象->布尔 都是 true，所以 new Boolean(false)其实是布尔的 true，看下面这段代码:
+
+```js
+if(new Boolean(false)){
+    alert('true!!');
+}
+```
+
+只有使用了 valueOf 后才是真正的转换布尔值，与上面包装对象与原始资料转换说明的相同:
+
+```js
+!!(new Boolean(false))  //true
+(new Boolean(false)).valueOf() //false
+```
+
+
+### 如何判断一个数据是不是Array
+
+ - `Array.isArray(obj)`
+   - ECMAScript 5种的函数，当使用ie8的时候就会出现问题。
+ - `obj instanceof Array`
+   - 当用来检测在不同的window或iframe里构造的数组时会失败。这是因为每一个iframe都有它自己的执行环境，彼此之间并不共享原型链，所以此时的判断一个对象是否为数组就会失败。此时我们有一个更好的方式去判断一个对象是否为数组。
+ - `Object.prototype.toString.call(obj) == '[object Array]'`
+   - 这个方法比较靠谱
+ - `obj.constructor === Array `
+   - constructor属性返回对创建此对象的函数的引用
+
+
+### Object.prototype.toString
+如果是原始类型，他会将原始类型包装为引用类型，然后调用对应方法
+
+```js
+function dd(){}
+var toString = Object.prototype.toString;
+toString.call(dd);          //[object Function]
+toString.call(new Object);  //[object Object]
+toString.call(new Array);   //[object Array]
+toString.call(new Date);    //[object Date]
+toString.call(new String);  //[object String]
+toString.call(Math);        //[object Math]
+toString.call(undefined);   //[object Undefined]
+toString.call(null);        //[object Null]
+toString.call(123)          //[object Number]
+toString.call('abc')        //[object String]
+```
+
+
+
+### obj.toString() 和Object.prototype.toString.call(obj)
+同样是检测对象obj调用toString方法，obj.toString()的结果和Object.prototype.toString.call(obj)的结果不一样，这是为什么？
+
+这是因为toString为Object的原型方法，而Array ，function等类型作为Object的实例，都重写了toString方法。不同的对象类型调用toString方法时，根据原型链的知识，调用的是对应的重写之后的toString方法（function类型返回内容为函数体的字符串，Array类型返回元素组成的字符串.....），而不会去调用Object上原型toString方法（返回对象的具体类型），所以采用obj.toString()不能得到其对象类型，只能将obj转换为字符串类型；因此，在想要得到对象的具体类型时，应该调用Object上原型toString方法。
+
+
+### 输出以下代码运行结果
+```JS
+1 + "1"
+
+2 * "2"
+
+[1, 2] + [2, 1]
+
+"a" + + "b"
+```
+ - 1 + "1"
+   - 加性操作符：如果只有一个操作数是字符串，则将另一个操作数转换为字符串，然后再将两个字符串拼接起来
+   - 所以值为：“11”
+ - 2 * "2"
+   - 乘性操作符：如果有一个操作数不是数值，则在后台调用 Number()将其转换为数值
+ - [1, 2] + [2, 1]
+   - Javascript中所有对象基本都是先调用valueOf方法，如果不是数值，再调用toString方法。
+   - 所以两个数组对象的toString方法相加，值为："1,22,1"
+ - "a" + + "b"
+   - 后边的“+”将作为一元操作符，如果操作数是字符串，将调用Number方法将该操作数转为数值，如果操作数无法转为数值，则为NaN。
+   - 所以值为："aNaN"
