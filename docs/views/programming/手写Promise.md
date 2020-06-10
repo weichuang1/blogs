@@ -1,6 +1,6 @@
 ---
 title: 手写Promise
-date: 2020-6-10
+date: 2020-6-05
 tags:
  - es6
 categories:

@@ -1,6 +1,6 @@
 ---
 title: Promise.all
-date: 2020-6-10
+date: 2020-6-06
 tags:
  - es6
 categories:
