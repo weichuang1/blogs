@@ -84,7 +84,7 @@ module.exports = [
         }
       ],
      
-      // require('./plugins/musicPlayer/index'),
+      require('../../plugins/musicPlayer/index'),
       ['@vuepress/last-updated', { // "上次更新"时间格式
         transformer: (timestamp, lang) => {
           const moment = require('moment') // https://momentjs.com/
