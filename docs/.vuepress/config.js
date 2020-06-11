@@ -32,6 +32,7 @@ module.exports = {
   themeConfig: {
     type: 'blog',
     huawei:false,
+    mode: 'light', // 默认 auto，auto 跟随系统，dark 暗色模式，light 亮色模式
     // 博客设置
     blogConfig: {
       category: {
