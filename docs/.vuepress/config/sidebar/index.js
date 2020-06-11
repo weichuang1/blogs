@@ -87,25 +87,6 @@ module.exports = {
       ]
     },
     {
-      title: 'ECharts',
-      collapsable: true,
-      children: [
-        'ECharts/EChartsStudy',
-      ]
-    },
-
-    {
-      title: '日记',
-      collapsable: true,
-      children: [
-        'essay/20200606',
-        'essay/20190928',
-        'essay/20191109',
-        'essay/20200227',
-        'essay/20200301'
-      ]
-    },
-    {
       title: 'HTML5',
       collapsable: true,
       children: [
@@ -125,7 +106,6 @@ module.exports = {
         'css/居中',
         'css/css选择器',
         'css/css',
-        'css/css3新特性',
         'css/其他题目'
       ]
     },
@@ -143,9 +123,7 @@ module.exports = {
         'js/原型链与继承',
         'js/js数据类型',
         'js/js对象',
-        'js/js继承',
-        'js/js函数的四种调用方式',
-        'js/js-json'
+        'js/js继承'
       ]
     },
     {
@@ -154,22 +132,6 @@ module.exports = {
       children: [
         'Vue/Vue基础笔记',
         'Vue/Vue组件'
-      ]
-    },
-    {
-      title: '前端单元测试',
-      collapsable: true,
-      children: [
-        'fe-unit-test/chai',
-        'fe-unit-test/mocha',
-        'fe-unit-test/vueTestUtils'
-      ]
-    },
-    {
-      title: '微信小程序',
-      collapsable: true,
-      children: [
-        'wechat-mini-program/初识微信小程序',
       ]
     }
 

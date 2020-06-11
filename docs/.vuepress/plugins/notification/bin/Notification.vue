@@ -3,18 +3,18 @@
     <div v-if="visible" class="notification-wrapper">
       <h4 class="notification-title">
         <i class="iconfont reco-tongzhi"></i>
-        <span>加微信 🎉🎉🎉</span>
+        <span>扫一扫 🎉🎉🎉</span>
         <i class="btn-close" @click="closeNote">
           <svg t="1573745677073" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4448" width="22" height="22"><path d="M512 34.133333a486.4 486.4 0 1 0 486.4 486.4A486.4 486.4 0 0 0 512 34.133333z m209.4848 632.8064l-55.6032 55.466667-151.517867-151.125333-151.517866 151.1168-55.6032-55.466667 151.517866-151.108267L307.242667 364.714667l55.6032-55.466667 151.517866 151.125333 151.517867-151.1168 55.6032 55.466667-151.517867 151.099733z m0 0" p-id="4449"></path></svg>
         </i>
       </h4>
       <div class="notification-content">
-        <img :src="require('./weixin.jpg')" alt="">
+        <h5>欢迎关注公众号 🎉🎉🎉</h5>
+        <img :src="require('./gongzhonghao.jpg')" alt="">
       </div>
       <div style="padding: 0 16px">
-        <!-- <h4>通知</h4>
-        <h5>1.1.4 发版，此版本中解决了许多不友好的 bug，已经是一个相对比较稳定的版本；</h5>
-        <h5>同时发布 1.2.0-alpha.1，主题将从 1.2.0 正式版开始适配系统的暗色模式和亮色模式，喜欢尝鲜的朋友可以开始尝试了。</h5> -->
+        <hr>
+       <a  href="/other/donate.html" class="btn-donate">打赏</a>
       </div>
     </div>
   </transition>
@@ -85,5 +85,18 @@ export default {
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+.btn-donate{
+  display: block;
+    margin: 2rem auto;
+    width: 3.4rem;
+    line-height: 3.4rem;
+    text-align: center;
+    background-color: #3eaf7c;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
 }
 </style>

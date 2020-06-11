@@ -1,6 +1,11 @@
 //导航栏
 module.exports = [
-    { text: 'home', link: '/index.html', icon: 'reco-home' },
+    { text: 'project', icon: 'reco-category',
+        items: [{
+            text: 'vue+elementui后台',
+            link: '/other/project',
+        }]
+    },
     { text: 'views', link: '/views/', icon: 'reco-document' },
     {
         text: 'documents', icon: 'reco-document',
@@ -35,20 +40,10 @@ module.exports = [
         }, {
             text: '编程语言排行榜',
             link: 'https://www.tiobe.com/tiobe-index/',
-        }]
-       
+        }] 
     },
     {
         text: 'instrument', icon: 'reco-api',
-        items: [{
-            text: 'Local tool',
-            items: [{
-                text: 'My Project',
-                link: '/other/project',
-            }]
-        },
-        {
-            text: 'Convenient online',
             items: [{
                 text: 'PDF编辑器',
                 link: 'https://smallpdf.com/cn/pdf-to-word',
@@ -77,7 +72,6 @@ module.exports = [
                 text: ' 编码转换器',
                 link: 'http://tool.chinaz.com/tools/native_ascii.aspx',
             }]
-        },]
     },
     { text: 'TimeLine', link: '/timeline/', icon: 'reco-date' },
     { text: 'About', link: '/about/', icon: 'reco-message' }

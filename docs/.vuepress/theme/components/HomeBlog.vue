@@ -85,6 +85,30 @@ export default {
       tags: []
     }
   },
+  created() { //生命周期函数
+		//判断当前页面是否被隐藏
+		var that = this;
+		var hiddenProperty = 'hidden' in document ? 'hidden' :
+			'webkitHidden' in document ? 'webkitHidden' :
+			'mozHidden' in document ? 'mozHidden' :	null;
+		var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+		var onVisibilityChange = function() {
+			if (document[hiddenProperty]) { //被隐藏
+				document.title = '已藏好';
+			} else {
+				document.title = '学不可以已'; //当前窗口打开
+				if (that.$route.path != '/Home') {
+					if (localStorage.getItem('userInfo')) {
+						that.haslogin = true;
+					} else {
+						that.haslogin = false;
+					}
+				}
+			}
+		}
+		document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	
+	},
   computed: {
     homeBlogCfg () {
       return this.$recoLocales.homeBlog
