@@ -4,24 +4,27 @@
       <div
         class="mask"
         :style="{
-      background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`}"></div>
+      background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`}"
+      ></div>
       <ModuleTransition>
         <img
           v-if="recoShowModule && $frontmatter.heroImage"
           :style="heroImageStyle || {}"
           :src="$withBase($frontmatter.heroImage)"
-          alt="hero">
+          alt="hero"
+        />
       </ModuleTransition>
       <ModuleTransition delay="0.04">
-        <h1 v-if="recoShowModule && $frontmatter.heroText !== null">
-          {{ $frontmatter.heroText || $title || 'vuePress-theme-reco' }}
-        </h1>
+        <h1
+          v-if="recoShowModule && $frontmatter.heroText !== null"
+        >{{ $frontmatter.heroText || $title || 'vuePress-theme-reco' }}</h1>
       </ModuleTransition>
 
       <ModuleTransition delay="0.08">
-        <p v-if="recoShowModule && $frontmatter.tagline !== null" class="description">
-          {{ $frontmatter.tagline || $description || 'Welcome to your vuePress-theme-reco site' }}
-        </p>
+        <p
+          v-if="recoShowModule && $frontmatter.tagline !== null"
+          class="description"
+        >{{ $frontmatter.tagline || $description || 'Welcome to your vuePress-theme-reco site' }}</p>
       </ModuleTransition>
     </div>
 
@@ -29,147 +32,159 @@
       <div v-show="recoShowModule" class="home-blog-wrapper">
         <div class="blog-list">
           <!-- 博客列表 -->
-          <note-abstract
-            :data="$recoPosts"
-            :currentPage="currentPage"></note-abstract>
+          <note-abstract :data="$recoPosts" :currentPage="currentPage"></note-abstract>
           <!-- 分页 -->
           <pagation
             class="pagation"
             :total="$recoPosts.length"
             :currentPage="currentPage"
-            @getCurrentPage="getCurrentPage" />
+            @getCurrentPage="getCurrentPage"
+          />
         </div>
         <div class="info-wrapper">
-          <PersonalInfo/>
-          <h4><i class="iconfont reco-category"></i> {{homeBlogCfg.category}}</h4>
+          <PersonalInfo />
+          <h4>
+            <i class="iconfont reco-category"></i>
+            {{homeBlogCfg.category}}
+          </h4>
           <ul class="category-wrapper">
             <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
               <router-link :to="item.path">
                 <span class="category-name">{{ item.name }}</span>
-                <span class="post-num" :style="{ 'backgroundColor': getOneColor() }">{{ item.pages.length }}</span>
+                <span
+                  class="post-num"
+                  :style="{ 'backgroundColor': getOneColor() }"
+                >{{ item.pages.length }}</span>
               </router-link>
             </li>
           </ul>
-          <hr>
-          <h4 v-if="$tags.list.length !== 0"><i class="iconfont reco-tag"></i> {{homeBlogCfg.tag}}</h4>
+          <hr />
+          <h4 v-if="$tags.list.length !== 0">
+            <i class="iconfont reco-tag"></i>
+            {{homeBlogCfg.tag}}
+          </h4>
           <TagList @getCurrentTag="getPagesByTags" />
-          <h4 v-if="$themeConfig.friendLink && $themeConfig.friendLink.length !== 0"><i class="iconfont reco-friend"></i> {{homeBlogCfg.friendLink}}</h4>
+          <h4 v-if="$themeConfig.friendLink && $themeConfig.friendLink.length !== 0">
+            <i class="iconfont reco-friend"></i>
+            {{homeBlogCfg.friendLink}}
+          </h4>
           <FriendLink />
         </div>
       </div>
     </ModuleTransition>
 
     <ModuleTransition delay="0.24">
-      <Content v-show="recoShowModule" class="home-center" custom/>
+      <Content v-show="recoShowModule" class="home-center" custom />
     </ModuleTransition>
   </div>
 </template>
 
 <script>
-import TagList from '@theme/components/TagList'
-import FriendLink from '@theme/components/FriendLink'
-import NoteAbstract from '@theme/components/NoteAbstract'
-import pagination from '@theme/mixins/pagination'
-import ModuleTransition from '@theme/components/ModuleTransition'
-import PersonalInfo from '@theme/components/PersonalInfo'
-import { getOneColor } from '@theme/helpers/other'
-import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
+import TagList from "@theme/components/TagList";
+import FriendLink from "@theme/components/FriendLink";
+import NoteAbstract from "@theme/components/NoteAbstract";
+import pagination from "@theme/mixins/pagination";
+import ModuleTransition from "@theme/components/ModuleTransition";
+import PersonalInfo from "@theme/components/PersonalInfo";
+import { getOneColor } from "@theme/helpers/other";
+import moduleTransitonMixin from "@theme/mixins/moduleTransiton";
 
 export default {
   mixins: [pagination, moduleTransitonMixin],
-  components: { NoteAbstract, TagList, FriendLink, ModuleTransition, PersonalInfo },
-  data () {
+  components: {
+    NoteAbstract,
+    TagList,
+    FriendLink,
+    ModuleTransition,
+    PersonalInfo
+  },
+  data() {
     return {
       recoShow: false,
       currentPage: 1,
       tags: []
-    }
+    };
   },
-  created() { //生命周期函数
-		//判断当前页面是否被隐藏
-		var that = this;
-		var hiddenProperty = 'hidden' in document ? 'hidden' :'webkitHidden' in document ? 'webkitHidden' :'mozHidden' in document ? 'mozHidden' :	null;
-		var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
-		var onVisibilityChange = function() {
-			if (document[hiddenProperty]) { //被隐藏
-				document.title = '已藏好';
-			} else {
-				document.title = '学不可以已'; //当前窗口打开
-			}
-		}
-		document.addEventListener(visibilityChangeEvent, onVisibilityChange);
-	
-	},
+  created() {
+    //生命周期函数
+    //判断当前页面是否被隐藏
+    document.addEventListener("visibilitychange", function() {
+      if (document.hidden) {
+        document.title = "(/≧▽≦/)不见了！";
+      } else {
+        document.title = "学不可以已！ ";
+      }
+    });
+  },
   computed: {
-    homeBlogCfg () {
-      return this.$recoLocales.homeBlog
+    homeBlogCfg() {
+      return this.$recoLocales.homeBlog;
     },
-    actionLink () {
-      const {
-        actionLink: link,
-        actionText: text
-      } = this.$frontmatter
+    actionLink() {
+      const { actionLink: link, actionText: text } = this.$frontmatter;
 
       return {
         link,
         text
-      }
+      };
     },
-    heroImageStyle () {
-      return this.$frontmatter.heroImageStyle || {
-        maxHeight: '200px',
-        margin: '6rem auto 1.5rem'
-      }
+    heroImageStyle() {
+      return (
+        this.$frontmatter.heroImageStyle || {
+          maxHeight: "200px",
+          margin: "6rem auto 1.5rem"
+        }
+      );
     },
-    bgImageStyle () {
+    bgImageStyle() {
       const initBgImageStyle = {
-        height: '350px',
-        textAlign: 'center',
-        overflow: 'hidden'
-      }
-      const {
-        bgImageStyle
-      } = this.$frontmatter
+        height: "350px",
+        textAlign: "center",
+        overflow: "hidden"
+      };
+      const { bgImageStyle } = this.$frontmatter;
 
-      return bgImageStyle ? { ...initBgImageStyle, ...bgImageStyle } : initBgImageStyle
+      return bgImageStyle
+        ? { ...initBgImageStyle, ...bgImageStyle }
+        : initBgImageStyle;
     },
-    heroHeight () {
-      return document.querySelector('.hero').clientHeight
+    heroHeight() {
+      return document.querySelector(".hero").clientHeight;
     }
   },
-  mounted () {
-    this.recoShow = true
-    this._setPage(this._getStoragePage())
+  mounted() {
+    this.recoShow = true;
+    this._setPage(this._getStoragePage());
   },
   methods: {
     // 获取当前页码
-    getCurrentPage (page) {
-      this._setPage(page)
+    getCurrentPage(page) {
+      this._setPage(page);
       setTimeout(() => {
-        window.scrollTo(0, this.heroHeight)
-      }, 100)
+        window.scrollTo(0, this.heroHeight);
+      }, 100);
     },
     // 根据分类获取页面数据
-    getPages () {
-      let pages = this.$site.pages
+    getPages() {
+      let pages = this.$site.pages;
       pages = pages.filter(item => {
-        const { home, date } = item.frontmatter
-        return !(home == true || date === undefined)
-      })
+        const { home, date } = item.frontmatter;
+        return !(home == true || date === undefined);
+      });
       // reverse()是为了按时间最近排序排序
-      this.pages = pages.length == 0 ? [] : pages
+      this.pages = pages.length == 0 ? [] : pages;
     },
-    getPagesByTags (tagInfo) {
-      this.$router.push({ path: tagInfo.path })
+    getPagesByTags(tagInfo) {
+      this.$router.push({ path: tagInfo.path });
     },
-    _setPage (page) {
-      this.currentPage = page
-      this.$page.currentPage = page
-      this._setStoragePage(page)
+    _setPage(page) {
+      this.currentPage = page;
+      this.$page.currentPage = page;
+      this._setStoragePage(page);
     },
     getOneColor
   }
-}
+};
 </script>
 
 <style lang="stylus">
@@ -178,39 +193,42 @@ export default {
   margin: 0px auto;
 
   .hero {
-    position relative
+    position: relative;
+
     .mask {
-      position absolute
-      top 0
-      bottom 0
-      left 0
-      right 0
-      z-index -1
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: -1;
+
       &:after {
-        display block
-        content ' '
-        background var(--mask-color)
-        position absolute
-        top 0
-        bottom 0
-        left 0
-        right 0
-        z-index 0
-        opacity .2
+        display: block;
+        content: ' ';
+        background: var(--mask-color);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        opacity: 0.2;
       }
     }
+
     figure {
-      position absolute
-      background yellow
+      position: absolute;
+      background: yellow;
     }
 
     h1 {
-      margin:7rem auto 1.8rem;
+      margin: 7rem auto 1.8rem;
       font-size: 2.5rem;
     }
 
     h1, .description, .action, .huawei {
-      color #fff
+      color: #fff;
     }
 
     .description {
@@ -219,64 +237,75 @@ export default {
       line-height: 1.3;
     }
   }
+
   .home-blog-wrapper {
-    display flex
+    display: flex;
     align-items: flex-start;
-    margin 20px auto 0
-    max-width 1126px
+    margin: 20px auto 0;
+    max-width: 1126px;
+
     .blog-list {
-      flex auto
-      width 0
+      flex: auto;
+      width: 0;
+
       .abstract-wrapper {
         .abstract-item:last-child {
           margin-bottom: 0px;
         }
       }
     }
+
     .info-wrapper {
       position: -webkit-sticky;
       position: sticky;
       top: 70px;
-      transition all .3s
-      margin-left 15px;
-      flex 0 0 300px
-      height auto;
-      box-shadow var(--box-shadow);
-      border-radius $borderRadius
-      box-sizing border-box
-      padding 0 15px
-      background var(--background-color)
+      transition: all 0.3s;
+      margin-left: 15px;
+      flex: 0 0 300px;
+      height: auto;
+      box-shadow: var(--box-shadow);
+      border-radius: $borderRadius;
+      box-sizing: border-box;
+      padding: 0 15px;
+      background: var(--background-color);
+
       &:hover {
         box-shadow: var(--box-shadow-hover);
       }
+
       h4 {
-        color var(--text-color)
+        color: var(--text-color);
       }
+
       .category-wrapper {
-        list-style none
-        padding-left 0
+        list-style: none;
+        padding-left: 0;
+
         .category-item {
-          margin-bottom .4rem
-          padding: .4rem .8rem;
-          transition: all .5s
-          border-radius $borderRadius
-          box-shadow var(--box-shadow)
-          background-color var(--background-color)
+          margin-bottom: 0.4rem;
+          padding: 0.4rem 0.8rem;
+          transition: all 0.5s;
+          border-radius: $borderRadius;
+          box-shadow: var(--box-shadow);
+          background-color: var(--background-color);
+
           &:hover {
-            transform scale(1.04)
+            transform: scale(1.04);
           }
+
           a {
-            display flex
-            justify-content: space-between
+            display: flex;
+            justify-content: space-between;
+
             .post-num {
-              width 1.6rem;
-              height 1.6rem
-              text-align center
-              line-height 1.6rem
-              border-radius $borderRadius
-              background #eee
-              font-size .6rem
-              color #fff
+              width: 1.6rem;
+              height: 1.6rem;
+              text-align: center;
+              line-height: 1.6rem;
+              border-radius: $borderRadius;
+              background: #eee;
+              font-size: 0.6rem;
+              color: #fff;
             }
           }
         }
@@ -289,16 +318,18 @@ export default {
   .home-blog {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+
     .hero {
-      margin 0 -1.5rem
-      height 450px
+      margin: 0 -1.5rem;
+      height: 450px;
+
       img {
         max-height: 210px;
         margin: 2rem auto 1.2rem;
       }
 
       h1 {
-        margin: 6rem auto 1.8rem ;
+        margin: 6rem auto 1.8rem;
         font-size: 2rem;
       }
 
@@ -315,9 +346,10 @@ export default {
         padding: 0.6rem 1.2rem;
       }
     }
+
     .home-blog-wrapper {
       .info-wrapper {
-        display none!important
+        display: none !important;
       }
     }
   }
@@ -329,15 +361,16 @@ export default {
     padding-right: 1.5rem;
 
     .hero {
-      margin 0 -1.5rem
-      height 350px
+      margin: 0 -1.5rem;
+      height: 350px;
+
       img {
         max-height: 210px;
         margin: 2rem auto 1.2rem;
       }
 
       h1 {
-        margin: 6rem auto 1.8rem ;
+        margin: 6rem auto 1.8rem;
         font-size: 2rem;
       }
 
@@ -357,7 +390,7 @@ export default {
 
     .home-blog-wrapper {
       .info-wrapper {
-        display none!important
+        display: none !important;
       }
     }
   }
