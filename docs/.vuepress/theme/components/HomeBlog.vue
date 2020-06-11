@@ -105,7 +105,7 @@ export default {
       tags: []
     };
   },
-  created() {
+   created() {
     //生命周期函数
     //判断当前页面是否被隐藏
     document.addEventListener("visibilitychange", function() {
