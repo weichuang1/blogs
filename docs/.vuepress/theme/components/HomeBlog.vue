@@ -97,13 +97,6 @@ export default {
 				document.title = '已藏好';
 			} else {
 				document.title = '学不可以已'; //当前窗口打开
-				if (that.$route.path != '/Home') {
-					if (localStorage.getItem('userInfo')) {
-						that.haslogin = true;
-					} else {
-						that.haslogin = false;
-					}
-				}
 			}
 		}
 		document.addEventListener(visibilityChangeEvent, onVisibilityChange);
