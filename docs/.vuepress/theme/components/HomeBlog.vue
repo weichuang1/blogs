@@ -105,17 +105,18 @@ export default {
       tags: []
     };
   },
-   created() {
-    //生命周期函数
-    //判断当前页面是否被隐藏
-    document.addEventListener("visibilitychange", function() {
-      if (document.hidden) {
-        document.title = "(/≧▽≦/)不见了！";
-      } else {
-        document.title = "学不可以已！ ";
-      }
-    });
-  },
+  //  created() {
+  //   //生命周期函数
+  //   //判断当前页面是否被隐藏
+  
+  //   document.addEventListener("visibilitychange", function() {
+  //     if (document.hidden) {
+  //       document.title = "(/≧▽≦/)不见了！";
+  //     } else {
+  //       document.title = "学不可以已！ ";
+  //     }
+  //   });
+  // },
   computed: {
     homeBlogCfg() {
       return this.$recoLocales.homeBlog;
