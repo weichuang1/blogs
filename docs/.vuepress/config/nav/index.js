@@ -3,7 +3,7 @@ module.exports = [
     { text: 'project', icon: 'reco-category',
         items: [{
             text: 'vue+elementui后台',
-            link: '/other/project',
+            link: 'https://gitee.com/wei_i_nihao/vue-lianxi/tree/master/system-dianshang',
         }]
     },
     { text: 'views', link: '/views/', icon: 'reco-document' },
