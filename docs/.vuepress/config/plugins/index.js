@@ -22,56 +22,56 @@ module.exports = [
           }
         }
       ],
-         [
-      require('../../plugins/BgMusic'),
-      {
-        audios: [
-          {
-            name: '一定要爱你',
-            artist: '田一龙',
-            url: './music/yiding.mp3',
-            cover: './music/yiding.jpg'
-          },
-          {
-            name: '爱很美',
-            artist: '刘佳',
-            url: './music/aihenmei.mp3',
-            cover: './music/aihenmei.jpg'
-          },
-          {
-            name: 'Sold Out',
-            artist: 'Hawk Nelson',
-            url: './music/soldout.mp3',
-            cover: './music/sold.jpg'
-          },
-          {
-            name: '就当是你为了我',
-            artist: '许诺',
-            url: './music/xunuo.mp3',
-            cover: './music/xunuo.jpg'
-          },
-          {
-            name: '喜欢',
-            artist: '赵奕欢',
-            url: './music/xihuan.mp3',
-            cover: './music/xihuan.jpg'
-          },
-          {
-            name: '左手指月',
-            artist: '黄霄云',
-            url: './music/zhiyue.mp3',
-            cover: './music/zhiyue.jpg'
-          },
-          {
-            name: 'Something Just Like This',
-            artist: 'Anthony Keyrouz/Romy Wave',
-            url: './music/this.mp3',
-            cover: './music/this.jpg'
-          }
-        ]
-      }
-    ]
-    ,
+        //  [
+    //   require('../../plugins/BgMusic'),
+    //   {
+    //     audios: [
+    //       {
+    //         name: '一定要爱你',
+    //         artist: '田一龙',
+    //         url: './music/yiding.mp3',
+    //         cover: './music/yiding.jpg'
+    //       },
+    //       {
+    //         name: '爱很美',
+    //         artist: '刘佳',
+    //         url: './music/aihenmei.mp3',
+    //         cover: './music/aihenmei.jpg'
+    //       },
+    //       {
+    //         name: 'Sold Out',
+    //         artist: 'Hawk Nelson',
+    //         url: './music/soldout.mp3',
+    //         cover: './music/sold.jpg'
+    //       },
+    //       {
+    //         name: '就当是你为了我',
+    //         artist: '许诺',
+    //         url: './music/xunuo.mp3',
+    //         cover: './music/xunuo.jpg'
+    //       },
+    //       {
+    //         name: '喜欢',
+    //         artist: '赵奕欢',
+    //         url: './music/xihuan.mp3',
+    //         cover: './music/xihuan.jpg'
+    //       },
+    //       {
+    //         name: '左手指月',
+    //         artist: '黄霄云',
+    //         url: './music/zhiyue.mp3',
+    //         cover: './music/zhiyue.jpg'
+    //       },
+    //       {
+    //         name: 'Something Just Like This',
+    //         artist: 'Anthony Keyrouz/Romy Wave',
+    //         url: './music/this.mp3',
+    //         cover: './music/this.jpg'
+    //       }
+    //     ]
+    //   }
+    // ]
+    // ,
       require('../../plugins/notification/index'),
       [
         '@vuepress/pwa',
