@@ -24,7 +24,7 @@ module.exports = {
       ]
     },
     {
-      title: '编程题',
+      title: '面试题',
       collapsable: true,
       children: [
         'programming/闭包',
@@ -75,7 +75,8 @@ module.exports = {
         '网络/CDN',
         '网络/cookie和session',
         '网络/RESTful',
-        '网络/nginx'
+        '网络/nginx',
+        '网络/登陆跳转'
       ]
     },
     {
